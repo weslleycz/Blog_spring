@@ -2,6 +2,7 @@ import { Container, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { createWebStoragePersistor } from 'react-query/createWebStoragePersistor-experimental';
 import { Route, BrowserRouter as Router, Routes as RoutesX } from 'react-router-dom';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { Head } from './components/Head';
 import { Home } from './pages/Home';
 import { theme } from './theme';
@@ -24,7 +25,7 @@ export const Routes = (): string => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <Head />
-          <Container sx={{ background: 'white', marginTop:3 }} >
+          <Container sx={{ background: 'white', marginTop: 3 }}>
             <Router>
               <RoutesX>
                 <Route path="/" element={<Home />} />
@@ -32,6 +33,7 @@ export const Routes = (): string => {
             </Router>
           </Container>
         </ThemeProvider>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </>
   );
