@@ -1,0 +1,26 @@
+@import "../../theme/";
+
+.text{
+    font-family: "Tiamat Condensed SC Regular Regular";
+    font-size: 5rem;
+    color: white;
+}
+
+.hero-container{
+    background-color: #e21f1f;
+    margin-bottom: 2%;
+    padding: 1%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.sub-title{
+    color: white;
+    border-left: 3px solid white;
+    padding: 2%;
+    width: 90%;
+    // background-color: black;
+}

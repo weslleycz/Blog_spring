@@ -1,0 +1,17 @@
+.link {
+  font-weight: 800;
+  cursor: pointer;
+  color: #e21f1f;
+  &:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+  }
+}
+
+.image-container {
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
