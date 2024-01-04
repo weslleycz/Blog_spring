@@ -7,9 +7,11 @@ export const Head = () => {
     <>
       <Box>
         <Box className={styles.container}>
-          <Box>
-            <img width={30} src={logo} />
-          </Box>
+          <a href="/">
+            <Box>
+              <img width={30} src={logo} />
+            </Box>
+          </a>
           <Box>
             <Stack direction="row" spacing={2}>
               <Button variant="text">Home</Button>

@@ -1,4 +1,4 @@
-package com.blog.controller;
+package com.blog.controllers;
 
 import java.util.List;
 import java.util.UUID;
