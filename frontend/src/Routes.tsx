@@ -26,24 +26,23 @@ const localStoragePersistor = createWebStoragePersistor({
 
 export const Routes = (): string => {
   const [cookies, setCookie] = useCookies(['token']);
-  useEffect(() => {
-    //console.log(cookies.token);
-    //setCookie('token', 'jghhjghj');
-  }, []);
   return (
     <>
       <CookiesProvider>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Head />
-         
-              <Router>
-                <RoutesX>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/a1dmin" element={cookies.token ? <Admin /> : <Login />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </RoutesX>
-              </Router>
+
+            <Router>
+              <RoutesX>
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/a1dmin"
+                  element={cookies.token || sessionStorage.getItem('token') ? <Admin /> : <Login />}
+                />
+                <Route path="*" element={<NotFoundPage />} />
+              </RoutesX>
+            </Router>
           </ThemeProvider>
           <ReactQueryDevtools />
         </QueryClientProvider>

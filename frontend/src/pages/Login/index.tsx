@@ -1,21 +1,31 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, TextField } from '@mui/material';
+import { Alert, Box, Button, Checkbox, Container, FormControlLabel, TextField } from '@mui/material';
 import logo from '../../assets/logo.svg';
 import { useState } from 'react';
 import { api } from '../../services/api';
+import { CookiesProvider, useCookies } from 'react-cookie';
 
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
+  const [cookies, setCookie] = useCookies(['token']);
+  const [isErro, setIsErro] = useState(false);
   const handleLogin = async (event: any) => {
     event.preventDefault();
+    setIsErro(false);
     try {
       const res = await api.post('/admin/login', {
         username,
         password,
       });
-      console.log(res);
+      if (checked) {
+        setCookie(res.data);
+      } else {
+        sessionStorage.setItem('token', res.data);
+      }
+      window.location.href = '/a1dmin';
     } catch (error) {
+      setIsErro(true);
       console.log(error);
     }
   };
@@ -36,7 +46,7 @@ export const Login = () => {
             width: '350px',
             padding: 13,
             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-            // borderRadius: '8px',
+            borderRadius: '8px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -63,11 +73,15 @@ export const Login = () => {
               type="password"
               required
             />
+            {isErro ? (
+              <Alert severity="error">
+                O login não pôde ser concluído. Por favor, entre em contato com o administrador.
+              </Alert>
+            ) : null}
             <FormControlLabel
               control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} />}
               label="Lembre-se de mim"
             />
-
             <Button fullWidth type="submit" variant="contained" color="primary">
               Entrar
             </Button>
