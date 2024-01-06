@@ -14,7 +14,9 @@ export const Head = () => {
           </a>
           <Box>
             <Stack direction="row" spacing={2}>
-              <Button variant="contained">Contato</Button>
+            <a href="/contact">
+            <Button variant="contained">Contato</Button>
+            </a>
             </Stack>
           </Box>
         </Box>

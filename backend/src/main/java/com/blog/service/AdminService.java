@@ -47,5 +47,4 @@ public class AdminService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("admin não encontrado");
         }
     }
-
 }

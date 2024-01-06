@@ -1,11 +1,19 @@
-import { Alert, Box, Container, Grid, SnackbarContent } from '@mui/material';
+import { Box, Container, Grid, SnackbarContent } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { PostForm } from '../../components/PostForm';
-import styles from './styles.module.scss';
 import { Posts } from '../../components/Posts';
-import { useState } from 'react';
+import styles from './styles.module.scss';
+import { api } from '../../services/api';
 
 export const Admin = () => {
   const [reloader, setReloader] = useState(0);
+  const [mensagens, setMensagens] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const res = await api.get('/mensagem');
+      setMensagens(res.data);
+    })();
+  }, []);
   return (
     <>
       <Container sx={{ background: 'white', marginTop: 3, height: '90vh' }}>
@@ -23,14 +31,24 @@ export const Admin = () => {
             <Box padding={2}>
               <Box p={1}>
                 <p className={styles.text}>Mensagens</p>
-                <Box>
-                  <p>Weslley</p>
-                <SnackbarContent
-                  elevation={1}
-                  sx={{ bgcolor: 'white', color: '#917d7d' }}
-                  message="I love candy. I love cookies. I love cupcakes."
-                />
-                </Box>
+                {mensagens.reverse().map((mensagen: any) => {
+                  return (
+                    <>
+                      <Box key={mensagen.id} marginTop={1}>
+                        <Box justifyContent={'space-between'} display={'flex'}>
+                          <p className={styles['name-contact']}>{mensagen.name}</p>
+                          <p className={styles['email-contact']}>{mensagen.email}</p>
+                        </Box>
+
+                        <SnackbarContent
+                          elevation={1}
+                          sx={{ bgcolor: 'white', color: '#917d7d' }}
+                          message={mensagen.message}
+                        />
+                      </Box>
+                    </>
+                  );
+                })}
               </Box>
             </Box>
           </Grid>
