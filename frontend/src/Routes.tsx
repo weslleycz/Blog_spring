@@ -1,35 +1,18 @@
-import { Container, ThemeProvider } from '@mui/material';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { createWebStoragePersistor } from 'react-query/createWebStoragePersistor-experimental';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from '@mui/material';
 import { Route, BrowserRouter as Router, Routes as RoutesX } from 'react-router-dom';
+import useCookie from 'react-use-cookie';
 import { Head } from './components/Head';
 import { Admin } from './pages/Admin';
 import { Home } from './pages/Home';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { CookiesProvider, useCookies } from 'react-cookie';
-import { theme } from './theme';
-import { useEffect } from 'react';
 import { Login } from './pages/Login';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      cacheTime: 1000 * 60 * 10,
-    },
-  },
-});
-
-const localStoragePersistor = createWebStoragePersistor({
-  storage: sessionStorage,
-});
+import { NotFoundPage } from './pages/NotFoundPage';
+import { theme } from './theme';
+import { Post } from './pages/Post';
 
 export const Routes = (): string => {
-  const [cookies, setCookie] = useCookies(['token']);
+  const [userToken, setUserToken] = useCookie('token', '0');
   return (
     <>
-      <CookiesProvider>
-        <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Head />
 
@@ -38,15 +21,13 @@ export const Routes = (): string => {
                 <Route path="/" element={<Home />} />
                 <Route
                   path="/a1dmin"
-                  element={cookies.token || sessionStorage.getItem('token') ? <Admin /> : <Login />}
+                  element={userToken != '0' || sessionStorage.getItem('token') ? <Admin /> : <Login />}
                 />
+                 <Route path="/post/*" element={<Post />} />
                 <Route path="*" element={<NotFoundPage />} />
               </RoutesX>
             </Router>
           </ThemeProvider>
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </CookiesProvider>
     </>
   );
 };

@@ -5,21 +5,22 @@ import styles from './styles.module.scss';
 
 type Props = {
   notionId: string;
+  title: string;
+  id: string;
 };
 
-export const CardNew = ({ notionId }: Props) => {
+export const CardNew = ({ notionId,title,id }: Props) => {
   const [img, setImg] = useState('');
-  const [title, setTitle] = useState('');
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(`https://notion-api.splitbee.io/v1/page/${notionId}`);
-      setTitle(Object.values(data)[0]?.value.properties.title[0][0]);
       setImg(Object.values(data)[0]?.value?.format.page_cover);
     })();
   }, []);
   return (
     <>
-      <Box className={styles.container}>
+    <a href={`/post/${id}`}>
+    <Box className={styles.container}>
         <CardMedia
           className={styles['image-container']}
           component="img"
@@ -31,6 +32,7 @@ export const CardNew = ({ notionId }: Props) => {
           <a className={styles.link}>{title}</a>
         </CardContent>
       </Box>
+    </a>
     </>
   );
 };

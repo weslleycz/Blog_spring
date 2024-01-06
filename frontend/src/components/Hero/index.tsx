@@ -8,8 +8,8 @@ export const Hero = () => {
     <Box className={styles['hero-container']}>
     <Grid container spacing={2}>
         <Grid className={styles.container} item xs={6}>
-          <Box>
-            <h1 className={styles.text}>Tiamat News</h1>
+          <Box p={1}>
+            <h2 className={styles.text}>Tiamat News</h2>
             <Typography className={styles['sub-title']} marginTop={4} variant="subtitle1" gutterBottom>
               Big things are coming to D&D, and we're excited to share the news with you. Wizards Presents is a showcase
               of 2022 and beyond!
@@ -17,7 +17,7 @@ export const Hero = () => {
           </Box>
         </Grid>
         <Grid item xs={4}>
-          <img width={500} src={heroImg} />
+          <img width={420} src={heroImg} />
         </Grid>
       </Grid>
     </Box>

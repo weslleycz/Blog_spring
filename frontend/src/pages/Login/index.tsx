@@ -2,13 +2,13 @@ import { Alert, Box, Button, Checkbox, Container, FormControlLabel, TextField } 
 import logo from '../../assets/logo.svg';
 import { useState } from 'react';
 import { api } from '../../services/api';
-import { CookiesProvider, useCookies } from 'react-cookie';
+import useCookie from 'react-use-cookie';
 
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
-  const [cookies, setCookie] = useCookies(['token']);
+  const [userToken, setUserToken] = useCookie('token', '0');
   const [isErro, setIsErro] = useState(false);
   const handleLogin = async (event: any) => {
     event.preventDefault();
@@ -19,7 +19,9 @@ export const Login = () => {
         password,
       });
       if (checked) {
-        setCookie(res.data);
+        setUserToken(res.data, {
+          days: 1,
+        });
       } else {
         sessionStorage.setItem('token', res.data);
       }

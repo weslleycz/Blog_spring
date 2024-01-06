@@ -8,10 +8,7 @@ export const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem('token') ? sessionStorage.getItem('token') : Cookies.get('token');
-    if (
-      (config.url === '/posts' && config.method === 'get') ||
-      (config.url === '/admin/login' && config.method === 'post')
-    ) {
+    if (config.method === 'get' || (config.url === '/admin/login' && config.method === 'post')) {
       return config;
     } else {
       if (token) {

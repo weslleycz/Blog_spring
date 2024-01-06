@@ -1,6 +1,6 @@
-import { Box, Button, Container, Stack } from '@mui/material';
-import styles from './styles.module.scss';
+import { Box, Button, Stack } from '@mui/material';
 import logo from '../../assets/logo.svg';
+import styles from './styles.module.scss';
 
 export const Head = () => {
   return (
