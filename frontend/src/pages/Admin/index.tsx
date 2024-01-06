@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Alert, Box, Container, Grid, SnackbarContent } from '@mui/material';
 import { PostForm } from '../../components/PostForm';
 import styles from './styles.module.scss';
 import { Posts } from '../../components/Posts';
@@ -23,6 +23,14 @@ export const Admin = () => {
             <Box padding={2}>
               <Box p={1}>
                 <p className={styles.text}>Mensagens</p>
+                <Box>
+                  <p>Weslley</p>
+                <SnackbarContent
+                  elevation={1}
+                  sx={{ bgcolor: 'white', color: '#917d7d' }}
+                  message="I love candy. I love cookies. I love cupcakes."
+                />
+                </Box>
               </Box>
             </Box>
           </Grid>

@@ -1,22 +1,18 @@
 import { Box, CardContent, CardMedia } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 type Props = {
   notionId: string;
   title: string;
   id: string;
+  cover: string;
 };
 
-export const CardNew = ({ notionId,title,id }: Props) => {
-  const [img, setImg] = useState('');
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`https://notion-api.splitbee.io/v1/page/${notionId}`);
-      setImg(Object.values(data)[0]?.value?.format.page_cover);
-    })();
-  }, []);
+export const CardNew = ({ notionId,title,id,cover }: Props) => {
+  const limitedTitle = title.length > 25
+  ? title.substr(0, 25) + '...'
+  : title;
+
   return (
     <>
     <a href={`/post/${id}`}>
@@ -25,11 +21,11 @@ export const CardNew = ({ notionId,title,id }: Props) => {
           className={styles['image-container']}
           component="img"
           style={{ width: '270px', height: '150px' }}
-          image={img}
+          image={`data:image/png;base64,${cover}`}
           alt="News Image"
         />
         <CardContent>
-          <a className={styles.link}>{title}</a>
+          <a className={styles.link}>{limitedTitle}</a>
         </CardContent>
       </Box>
     </a>

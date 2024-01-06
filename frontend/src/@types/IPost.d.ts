@@ -4,4 +4,5 @@ export type IPost = {
   date: string;
   title: string;
   views: number;
+  cover: string;
 };

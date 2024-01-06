@@ -19,7 +19,14 @@ export const Posts = ({ reloader }: Props) => {
   return (
     <>
       {posts.map((post: IPost) => (
-        <AdminPost id={post.id} views={post.views} title={post.title} key={post.id} notionId={post.notionId} />
+        <AdminPost
+          cover={post.cover}
+          id={post.id}
+          views={post.views}
+          title={post.title}
+          key={post.id}
+          notionId={post.notionId}
+        />
       ))}
     </>
   );

@@ -1,5 +1,4 @@
 import 'react-notion/src/styles.css';
-// import 'prismjs/themes/prism-tomorrow.css';
 
 import { Hero } from '../../components/Hero';
 import { News } from '../../components/News';
@@ -13,7 +12,6 @@ export const Home = () => {
         <Box paddingBottom={2} paddingTop={2}>
         <h3 style={{color:"#686868", fontStyle:"italic"}}>Notícias</h3>
         </Box>
-        {/* <NotionRenderer blockMap={blockMap} /> */}
         <News />
       </Container>
     </>

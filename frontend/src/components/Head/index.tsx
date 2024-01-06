@@ -14,8 +14,6 @@ export const Head = () => {
           </a>
           <Box>
             <Stack direction="row" spacing={2}>
-              <Button variant="text">Home</Button>
-              <Button variant="text">Sobre</Button>
               <Button variant="contained">Contato</Button>
             </Stack>
           </Box>

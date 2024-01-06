@@ -17,7 +17,7 @@ export const News = () => {
     <>
       <Stack marginBottom={2} direction="row" spacing={2}>
         {posts.map((post: IPost) => (
-          <CardNew id={post.id}  title={post.title} key={post.id} notionId={post.notionId} />
+          <CardNew cover={post.cover} id={post.id} title={post.title} key={post.id} notionId={post.notionId} />
         ))}
       </Stack>
     </>

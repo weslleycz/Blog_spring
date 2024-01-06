@@ -8,26 +8,28 @@ import { Login } from './pages/Login';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { theme } from './theme';
 import { Post } from './pages/Post';
+import { Contact } from './pages/Contact';
 
 export const Routes = (): string => {
   const [userToken, setUserToken] = useCookie('token', '0');
   return (
     <>
-          <ThemeProvider theme={theme}>
-            <Head />
+      <ThemeProvider theme={theme}>
+        <Head />
 
-            <Router>
-              <RoutesX>
-                <Route path="/" element={<Home />} />
-                <Route
-                  path="/a1dmin"
-                  element={userToken != '0' || sessionStorage.getItem('token') ? <Admin /> : <Login />}
-                />
-                 <Route path="/post/*" element={<Post />} />
-                <Route path="*" element={<NotFoundPage />} />
-              </RoutesX>
-            </Router>
-          </ThemeProvider>
+        <Router>
+          <RoutesX>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/a1dmin"
+              element={userToken != '0' || sessionStorage.getItem('token') ? <Admin /> : <Login />}
+            />
+            <Route path="/post/*" element={<Post />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/contact" element={<Contact />} />
+          </RoutesX>
+        </Router>
+      </ThemeProvider>
     </>
   );
 };

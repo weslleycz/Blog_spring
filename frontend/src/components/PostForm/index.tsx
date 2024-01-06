@@ -9,6 +9,7 @@ type Props = {
 
 export const PostForm = ({ setReloader, reloader }: Props) => {
   const [open, setOpen] = useState(false);
+  const [imageBase64, setImageBase64] = useState('');
   const [formData, setFormData] = useState({
     title: '',
     url: '',
@@ -33,17 +34,32 @@ export const PostForm = ({ setReloader, reloader }: Props) => {
         notionId: formData.url.replace('https://www.notion.so/', ''),
         date: String(Date.now()),
         title: formData.title,
+        cover: imageBase64,
       });
       setFormData({
         title: '',
         url: '',
       });
+      setImageBase64('');
     } catch (error) {
       console.log(error);
     }
     const reloaderData = reloader + 1;
     setReloader(reloaderData);
     handleClose();
+  };
+
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0];
+    const reader = new FileReader() as any;
+
+    reader.onload = () => {
+      setImageBase64(reader.result.split(',')[1]);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const styles = {
@@ -94,7 +110,8 @@ export const PostForm = ({ setReloader, reloader }: Props) => {
               sx={{ marginBottom: 1.5 }}
               fullWidth
             />
-            <Button fullWidth variant="contained" color="primary" onClick={handleSubmit}>
+            <input type="file" onChange={handleImageChange} />
+            <Button sx={{ marginTop: 2 }} fullWidth variant="contained" color="primary" onClick={handleSubmit}>
               Criar
             </Button>
           </form>
