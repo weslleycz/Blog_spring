@@ -1,6 +1,5 @@
 package com.blog.model;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -20,8 +19,10 @@ public class Post {
 
     private String notionId;
 
-    private LocalDate date;
+    private String date;
 
     private String title;
+
+    private int views;
 }
 

@@ -45,7 +45,6 @@
 				spring-boot-starter-data-jpa
 			</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				org.springframework.boot
@@ -54,7 +53,6 @@
 				spring-boot-starter-web
 			</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				org.springframework.boot
@@ -69,7 +67,6 @@
 				true
 			</optional>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				org.projectlombok
@@ -81,7 +78,6 @@
 				true
 			</optional>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				org.springframework.boot
@@ -93,7 +89,6 @@
 				test
 			</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				org.springframework.boot
@@ -102,7 +97,6 @@
 				spring-boot-starter-data-jpa
 			</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				org.postgresql
@@ -117,7 +111,6 @@
 				runtime
 			</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				at.favre.lib
@@ -129,7 +122,6 @@
 				0.10.2
 			</version>
 		</dependency>
-
 		<dependency>
 			<groupId>
 				jakarta.validation
@@ -138,7 +130,6 @@
 				jakarta.validation-api
 			</artifactId>
 		</dependency>
-
 		<!-- jwt -->
 		<dependency>
 			<groupId>
@@ -151,7 +142,21 @@
 				9.38-rc1
 			</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>
+				javax.servlet
+			</groupId>
+			<artifactId>
+				javax.servlet-api
+			</artifactId>
+			<version>
+				4.0.1
+			</version>
+			<!-- ou versão mais recente disponível -->
+			<scope>
+				provided
+			</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
